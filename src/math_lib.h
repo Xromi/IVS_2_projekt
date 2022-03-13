@@ -14,9 +14,22 @@
  * @brief Prints "Hello"
  * 
  */
-void print_hello();
 
+double my_add(double, double);
 
-double my_sqrt(double x);
+double my_subtract(double, double);
+
+double my_multiply(double, double);
+
+double my_divide(double, double);
+
+double my_factorial(double);
+
+double my_power(double);
+
+double my_root(double, double);
+
+double my_log(double);
+
 
 #endif
