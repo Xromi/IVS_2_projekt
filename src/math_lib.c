@@ -1,3 +1,11 @@
+/**
+ * @file math_lib.c
+ * @author David Klajbl, Marián Tarageľ, Ondřej Chromý
+ * @brief Implementation of mathematical library
+ * @version 0.1
+ * @date 2022-03-14
+ */
+
 #include "math_lib.h"
 #include <math.h>
 #include <stdio.h>
@@ -34,12 +42,12 @@ double my_factorial(double x){
 }
 
 // Power
-double my_power(double x){
-	return pow(x,y)
+double my_power(double x, double y){
+	return pow(x,y);
 }
 
 // Root
-double my_root(double x, double y){
+double my_root(double n, double x){
 	/*
 	return x;
 	*/
