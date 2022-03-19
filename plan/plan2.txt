@@ -2,9 +2,9 @@ Termíny:
 
 X 04.3.22	Plán - všichni
 X 06.3.22	Strukturovaný repozitář - xchrom19
-X 06.3.22Výběr užitých technologií - všichni
+X 06.3.22   Výběr užitých technologií - všichni
 X 11.3.22	Testy kompatibility vybraných technologií - xklajb00, xtarag01  
-X 18.3.22Návrh GUI a funkcionality kalkulačky - všichni
+X 18.3.22   Návrh GUI a funkcionality kalkulačky - všichni
     27.3.22	Rozhraní a implementace matematické knihovny - xtarag01
     27.3.22 příprava testů matematické knihovny - xchrom19 
 	27.3.22 Testy matematické knihovny - xchrom19
