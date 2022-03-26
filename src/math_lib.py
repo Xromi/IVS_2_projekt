@@ -1,8 +1,11 @@
 ## @file math_lib.py
-# @author Marián Tarageľ, David Klajb
+# @author Marián Tarageľ, David Klajbl
 # @brief Implementation of mathematical library
 # @version 0.3
 # @date 2022-03-26
+
+pi = 3.141592653589793
+e = 2.718281828459045
 
 ##
 # @brief Addition of two numbers
@@ -55,7 +58,7 @@ def my_multiply(x, y):
 # @param x Dividend
 # @param y Divisor
 #
-# @exception ZeroDivisionError Function raises ZeroDivisionError if divisor is negative value
+# @exception ZeroDivisionError Function raises ZeroDivisionError if divisor is zero
 # @exception TypeError         Function raises TypeError when divident or divisor is not float or int data type
 #
 # @return Quotient of x and y
@@ -74,8 +77,8 @@ def my_divide(x, y):
 #
 # @return Factorial of x
 def my_factorial(x):
-	if (type(x) != float and type(x) != int):
-		raise TypeError("Number have to be float or int number.")
+	if (type(x) != int):
+		raise TypeError("Number have to be int number.")
 	elif x < 0:
 		raise ValueError("Number have to be non-negative integer.")
 	f = 1
@@ -119,3 +122,19 @@ def my_power(x, y):
 # @return Value of n-th root of x
 def my_root(n, x):
 	return my_power(x, (1 / n))
+
+##
+# @brief Modulo of a number
+#
+# @param x Dividend
+# @param y Divisor
+#
+# @exception ZeroDivisionError Function raises ZeroDivisionError if divisor is zero
+# @exception TypeError         Function raises TypeError when divident or divisor is not float or int data type
+#
+# @return Value of modulo
+def my_modulo(x, y):
+	if (type(x) != float and type(x) != int) or (type(y) != float and type(y) != int):
+		raise TypeError("Divident and divisor have to be float or int numbers.")
+	else:
+		return x % y

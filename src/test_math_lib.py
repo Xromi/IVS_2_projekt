@@ -1,7 +1,6 @@
+from decimal import DivisionByZero
 import unittest
 import math_lib
-
-from math import e
 
 class TestMathLib(unittest.TestCase):
 
@@ -73,17 +72,15 @@ class TestMathLib(unittest.TestCase):
 		with self.assertRaises(ValueError):
 			math_lib.my_root(-4, -5)
 		
-	def test_my_log(self):
-		self.assertEqual(math_lib.my_log(1), 0)
-		self.assertEqual(math_lib.my_log(e), 1)
-		
-		#natural logarithm of a negative number
-		with self.assertRaises(ValueError):
-			math_lib.my_log(-5)
+	def test_my_modulo(self):
+		self.assertEqual(math_lib.my_modulo(26, 6), 2)
+		self.assertEqual(math_lib.my_modulo(21, 7), 0)
 
-		#natural logarithm of zero
-		with self.assertRaises(ValueError):
-			math_lib.my_log(0)
+		with self.assertRaises(TypeError):
+			math_lib.my_modulo(22, "11")
+
+		with self.assertRaises(ZeroDivisionError):
+			math_lib.my_modulo(3, 0)
 
 if __name__ == "__main__":
     unittest.main()
