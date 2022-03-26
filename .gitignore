@@ -13,10 +13,6 @@
 *.dylib
 *.dll
 
-# Fortran module files
-*.mod
-*.smod
-
 # Compiled Static libraries
 *.lai
 *.la
@@ -27,3 +23,10 @@
 *.exe
 *.out
 *.app
+
+# Python files
+__pycache__
+
+# Doxygen files
+warning_doxygen.txt
+doc
