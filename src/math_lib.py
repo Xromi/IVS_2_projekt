@@ -1,10 +1,8 @@
 ## @file math_lib.py
-# @author Marián Tarageľ
+# @author Marián Tarageľ, Dvid Klajb
 # @brief Implementation of mathematical library
-# @version 0.2
-# @date 2022-03-19
-
-from math import factorial
+# @version 0.3
+# @date 2022-03-26
 
 ##
 # @brief Addition of two numbers
@@ -76,7 +74,17 @@ def my_divide(x, y):
 #
 # @return Factorial of x
 def my_factorial(x):
-    return factorial(x)
+	if (type(x) != float and type(x) != int):
+		raise TypeError("Number have to be float or int number.")
+	elif x < 0:
+		raise ValueError("Number have to be non-negative integer.")
+	f = 1
+	if x == 0 or x == 1:
+		return f
+	else:
+		for i in range(1, x + 1):
+			f *= i
+		return f
 
 ##
 # @brief Exponentiation of two numbers
