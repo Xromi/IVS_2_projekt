@@ -11,6 +11,9 @@ class TestMathLib(unittest.TestCase):
 		self.assertEqual(math_lib.my_add(-1, -1), -2)
 		self.assertEqual(math_lib.my_add(1, -5), -4)
 		self.assertEqual(math_lib.my_add(5, 2.5), 7.5)
+
+		with self.assertRaises(TypeError):
+			math_lib.my_add(5, "2.5")
 		
 	def test_my_subtract(self):
 		self.assertEqual(math_lib.my_subtract(1, 1), 0)
@@ -52,6 +55,7 @@ class TestMathLib(unittest.TestCase):
 		self.assertEqual(math_lib.my_power(-1, 1), -1)
 		self.assertEqual(math_lib.my_power(-1, -1), -1)
 		self.assertEqual(math_lib.my_power(5, 5), 3125)	
+		self.assertEqual(math_lib.my_power(-27, 1/3), -3)	
 
 	def test_my_root(self):
 		self.assertEqual(math_lib.my_root(1, 1), 1.0)
@@ -59,10 +63,15 @@ class TestMathLib(unittest.TestCase):
 		self.assertEqual(math_lib.my_root(-1, 1), 1.0)
 		self.assertEqual(math_lib.my_root(-1, -1), -1.0)
 		self.assertEqual(math_lib.my_root(2, 25), 5.0)
+		self.assertEqual(math_lib.my_root(3, -27), -3)
+		self.assertEqual(math_lib.my_root(-3, -8), -1/2)
 		
 		#even degree root of a negative number
 		with self.assertRaises(ValueError):
 			math_lib.my_root(2, -5)
+		
+		with self.assertRaises(ValueError):
+			math_lib.my_root(-4, -5)
 		
 	def test_my_log(self):
 		self.assertEqual(math_lib.my_log(1), 0)
