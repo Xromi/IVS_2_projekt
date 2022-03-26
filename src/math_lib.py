@@ -1,5 +1,5 @@
 ## @file math_lib.py
-# @author Marián Tarageľ, Dvid Klajb
+# @author Marián Tarageľ, David Klajb
 # @brief Implementation of mathematical library
 # @version 0.3
 # @date 2022-03-26
