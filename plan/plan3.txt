@@ -1,0 +1,32 @@
+Termíny:
+
+X 04.3.22	Plán - všichni
+X 06.3.22	Strukturovaný repozitář - xchrom19
+X 06.3.22   Výběr užitých technologií - všichni
+X 11.3.22	Testy kompatibility vybraných technologií - xklajb00, xtarag01  
+X 18.3.22   Návrh GUI a funkcionality kalkulačky - všichni
+X   27.3.22	Rozhraní a implementace matematické knihovny - xtarag01
+X   27.3.22 příprava testů matematické knihovny - xchrom19 
+X	27.3.22 Testy matematické knihovny - xchrom19
+X	29.3.22 Profiling (výpočet směrodatné odchylky) - xhorva17
+X   01.4.22	Návrh akceptačních testů GUI - všichni
+    
+    11.4.22 Návrh testov spracovania výrazov - xhorva17
+    11.4.22	Implementace GUI - xchrom19
+    11.4.22	Implementace parseru vyrazov - xtarag01, xklajb00
+
+    15.4.22 Akceptační testy - všichni
+    16.4.22 ... EVAL
+    17.4.22	Instalátor - xhorva17, xklajb00, xtarag01
+    20.4.22	Uživatelská příručka - xchrom19
+    20.4.22	Mockup - všichni 
+
+Komunikační kanály: 
+
+	Discord - obecná komunikace, využití vláken a oddělených kanálů pro přehlednost
+	Trello - organizace
+
+Hosting repozitáře:
+
+	Github - https://github.com/Xromi/IVS_2_projekt
+	(pozvánka do repozitáře odeslána uživateli ivskontrola s adresou ivs.kontrola@gmail.com)
