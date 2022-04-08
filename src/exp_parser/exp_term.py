@@ -1,30 +1,35 @@
+import typing
 
 class ExpTerm():
-    operators = ['!', '^', '%', '*', '/', '+', '-']
+    # valid operators sorted by priority
+    operators = ['-', '+', '/', '*', '%', '^', '!']
 
-    type = None
-    val = None
+    type = None # "N" = number, "O" = operator, "(" = left bracket, ")" = right bracket
+    val = None  # Depending on type: "N": float number | "O": operator | "(": "(" | ")": ")"
 
-    def __init__(self, term):
-        if type(term) == float:
-            self.type = "N"
-            self.val = term
-        elif type(term) == str:
-            if term in self.operators:
-                self.type = "O"
-                self.val = term
-            elif term == '(' or term == ')':
-                self.type = term
-            else:
-                raise ValueError("Wrong term value.")
-        else:
-            raise TypeError("Wrong term type.")
+    def __get_type(self, raw_term) -> str:
+        if type(raw_term) == float:
+            return "N"
+        elif type(raw_term) == str:
+            if raw_term in self.operators:
+                return "O"
+            elif raw_term == '(':
+                return "("
+            elif raw_term == ')':
+                return ")"
 
-    def priority(self):
-        if self.type == "O":
-            try:
-                return self.operators.index(self.val)
-            except:
-                return None
-        else:
-            return None
+        raise TypeError("Unknown term.")
+
+    def __init__(self, term_value: typing.Union[str, float]):
+        self.type = self.__get_type(term_value)
+        self.val = term_value
+
+    def set(self, term_value: typing.Union[str, float]) -> None:
+        self.type = self.__get_type(term_value)
+        self.val = term_value
+
+    def priority(self) -> int:
+        try:
+            return (self.operators.index(self.val) + 1)
+        except:
+            return 0
