@@ -34,6 +34,6 @@ def parse_expression(exp_str: str) -> typing.List[ExpTerm]:
 
                 i += 1
     except:
-        return []
+        raise ValueError("Unable to parse expression.")
 
     return exp_list
