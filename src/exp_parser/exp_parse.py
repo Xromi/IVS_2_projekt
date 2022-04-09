@@ -43,29 +43,3 @@ def parse_expression(exp_str: str) -> typing.List[ExpTerm]:
         raise ValueError("Unable to parse expression.")
 
     return exp_list
-
-def prepare_expresion_to_eval(exp_list: typing.List[ExpTerm]) -> typing.List[ExpTerm]:
-    before = "None"
-    length = len(exp_list)
-    i = 0
-    while i < length:
-        if exp_list[i].type() == "(":
-            if before == "N" or before == ")":
-                exp_list.insert(i, ExpTerm("*"))
-                length += 1
-
-        if before == "None" or before == "(":
-            if exp_list[i].value() == "+":
-                exp_list.pop(i)
-                length -= 1
-            elif exp_list[i].value() == "-":
-                exp_list.pop(i)
-                value = exp_list[i].value()
-                exp_list.pop(i)
-                exp_list.insert(i, ExpTerm(-value))
-                length -= 1
-        
-        before = exp_list[i].type()
-        i += 1
-
-    return exp_list
