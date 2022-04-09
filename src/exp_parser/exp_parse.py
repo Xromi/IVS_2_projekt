@@ -1,4 +1,9 @@
-from cmath import exp
+## @file exp_parse.py
+# @author David Klajbl, Marián Tarageľ
+# @brief Parser of expresion
+# @version 0.2
+# @date 2022-04-09
+
 from exp_term import ExpTerm
 from curses.ascii import isdigit
 import typing
