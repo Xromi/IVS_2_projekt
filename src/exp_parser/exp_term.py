@@ -43,13 +43,13 @@ class ExpTerm():
     ## @brief ExpTerm constructor.
     # Initialises ExpTerm type and value.
     # @param term_value Initial value of ExpTerm.
-    # @exception ValueError Raises ValueError exception if term_value does not correspond to any ExpTerm type.
+    # @exception ValueError Raises ValueError exception if \p term_value does not correspond to any ExpTerm type.
     def __init__(self, term_value: typing.Union[str, float]):
         self.set(term_value)
 
     ## @brief Sets new ExpTerm type and value.
     # @param new_term_value New value of ExpTerm.
-    # @exception ValueError Raises ValueError exception if new_term_value does not correspond to any ExpTerm type.
+    # @exception ValueError Raises ValueError exception if \p new_term_value does not correspond to any ExpTerm type.
     def set(self, new_term_value: typing.Union[str, float]) -> None:
         self.__type = self.__get_type(new_term_value)
         self.__value = new_term_value
