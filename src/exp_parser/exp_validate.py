@@ -28,7 +28,7 @@ def _check_brackets(exp_list: typing.List[ExpTerm]) -> bool:
 
 # Checks if term value is in pattern. 
 # Pattern values include: 
-#       'N' = number | '(' = left bracket | ')' = right bracket
+#       'N' = number | 'C' = constant | '(' = left bracket | ')' = right bracket
 #       '+','-','*','/','%','^','!' = operators
 #       '_' = None, no term
 def _check_term_match(term: ExpTerm, pattern: str) -> bool:
@@ -52,20 +52,22 @@ def _check_term_syntax(left_term: ExpTerm, term: ExpTerm, right_term: ExpTerm) -
 
     if term.type() == "O":
         if term.value() == "!":
-            left_pattern = ")N"
+            left_pattern = ")NC"
         elif term.value() in ["+", "-"]:
-            left_pattern = "()N!"
-            right_pattern = "(N+-"
+            left_pattern = "()NC!"
+            right_pattern = "(NC+-"
         elif term.value() in ["*", "/", "%", "^"]:
-            left_pattern = ")N!*/^%_"
-            right_pattern = "(N"
+            left_pattern = ")NC!*/^%"
+            right_pattern = "(NC"
+    elif term.type() == "C":
+        pass
     elif term.type() == "(":
-        right_pattern = "(N+-"
+        right_pattern = "(NC+-"
     elif term.type() == ")":
-        left_pattern = ")N!"
+        left_pattern = ")NC!"
     elif term.type() == "N":
-        left_pattern = "()*/%^+-!_"
-        right_pattern = "()*/%^+-!_"
+        left_pattern = "()*/%^+-!C_"
+        right_pattern = "()*/%^+-!C_"
 
     if not _check_term_match(left_term, left_pattern) or not _check_term_match(right_term, right_pattern):
         return False

@@ -12,19 +12,26 @@ import typing
 #       - can be either number, operator, left bracket or right bracket
 #       - each type is represented by corresponding string value:
 #           - "N" = number
+#           - "C" = constant
 #           - "O" = operator
 #           - "(" = left bracket
 #           - ")" = right bracket
 # - **value**
 #       - representation depends on ExpTerm type:
 #           - if type is "N", value is represented as float number
+#           - if type is "C", value is either "e" or "π" string
 #           - if type is "O", value is either "-", "+", "/", "*", "%", "^" or "!" string
 #           - if type is "(", value is "(" string
 #           - if type is ")", value is ")" string
 class ExpTerm():
 
     # valid operators sorted by priority
+<<<<<<< HEAD
     __operators = ["+", "-", "/", "*", "%", "^", "!"]
+=======
+    __operators = ["-", "+", "/", "*", "%", "^", "!"]
+    __constants = ["π", "e"]
+>>>>>>> 1eec44b50a2a75be96827b0395c7b375557f1fb3
 
     # returns ExpTerm type of term_value, if value does not correspond to any type ValueError is raised
     def __get_type(self, term_value) -> str:
@@ -33,6 +40,8 @@ class ExpTerm():
         elif type(term_value) == str:
             if term_value in self.__operators:
                 return "O"
+            elif term_value in self.__constants:
+                return "C"
             elif term_value == '(':
                 return "("
             elif term_value == ')':
