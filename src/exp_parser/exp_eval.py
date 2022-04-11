@@ -1,8 +1,8 @@
 ## @file exp_eval.py
 # @author David Klajbl, Marián Tarageľ
 # @brief Evaluator of expressions
-# @version 0.2
-# @date 2022-04-10
+# @version 0.3
+# @date 2022-04-11
 
 from exp_term import ExpTerm
 import typing
@@ -44,6 +44,37 @@ def _preprocess_expression(exp_list: typing.List[ExpTerm]) -> None:
             i += 1
         
         i += 1
+
+def find_subexpresion(exp_list: typing.List[ExpTerm]) -> typing.List[ExpTerm]:
+    i = 0
+    open_bracket = 0
+    close_bracket = 0
+    while i < len(exp_list):
+        if exp_list[i].type() == "(":
+            open_bracket = i
+        elif exp_list[i].type() == ")":
+            close_bracket = i
+        if open_bracket and close_bracket:
+            break;
+        i += 1
+    
+    sub_term = []
+    for i in range(open_bracket, close_bracket + 1):
+        sub_term.append(exp_list[i])
+    
+    return sub_term
+
+def find_max_priority_index(expresion: typing.List[ExpTerm]) -> int:
+    i = 0
+    max_priority = 0
+    max_index = 0
+    while i < len(expresion):
+        if max_priority < expresion[i].priority():
+            max_priority = expresion[i].priority()
+            max_index = i
+        i += 1
+    
+    return max_index
 
 ## @brief Evaluates expression represented by list of \ref exp_term.ExpTerm "ExpTerm" classes and returns its value.
 # @param exp_list List of \ref exp_term.ExpTerm "ExpTerm" classes representing expression.
