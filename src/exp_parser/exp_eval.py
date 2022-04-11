@@ -1,7 +1,7 @@
 ## @file exp_eval.py
 # @author David Klajbl, Marián Tarageľ
 # @brief Evaluator of expressions
-# @version 0.3
+# @version 0.4
 # @date 2022-04-11
 
 from exp_term import ExpTerm
@@ -45,24 +45,15 @@ def _preprocess_expression(exp_list: typing.List[ExpTerm]) -> None:
         
         i += 1
 
-def find_subexpresion(exp_list: typing.List[ExpTerm]) -> typing.List[ExpTerm]:
-    i = 0
-    open_bracket = 0
-    close_bracket = 0
+    i = 1
     while i < len(exp_list):
-        if exp_list[i].type() == "(":
-            open_bracket = i
-        elif exp_list[i].type() == ")":
-            close_bracket = i
-        if open_bracket and close_bracket:
-            break
+        if exp_list[i].value() == "^" and exp_list[i + 1].value() != "(":
+            exp_list.insert(i + 1, ExpTerm("("))
+            exp_list.append(ExpTerm(")"))
+
         i += 1
-    
-    sub_term = []
-    for i in range(open_bracket, close_bracket + 1):
-        sub_term.append(exp_list[i])
-    
-    return sub_term
+
+
 
 def find_max_priority_index(expresion: typing.List[ExpTerm]) -> int:
     i = 0
@@ -74,7 +65,31 @@ def find_max_priority_index(expresion: typing.List[ExpTerm]) -> int:
             max_index = i
         i += 1
     
-    return max_index
+    if max_priority == 0:
+        return -1
+    else:
+        return max_index
+
+def eval_subexp(sub_exp: typing.List[ExpTerm], index: int) -> typing.List[ExpTerm]:
+    if sub_exp[index].value() == "-":
+        result = sub_exp[index - 1].value() - sub_exp[index + 1].value()
+    elif sub_exp[index].value() == "+":
+        result = sub_exp[index - 1].value() + sub_exp[index + 1].value()
+    elif sub_exp[index].value() == "/":
+        result = sub_exp[index - 1].value() / sub_exp[index + 1].value()
+    elif sub_exp[index].value() == "*":
+        result = sub_exp[index - 1].value() * sub_exp[index + 1].value()
+    elif sub_exp[index].value() == "%":
+        result = sub_exp[index - 1].value() % sub_exp[index + 1].value()
+    elif sub_exp[index].value() == "^":
+        result = sub_exp[index - 1].value() ** sub_exp[index + 1].value()
+    
+    sub_exp.pop(index)
+    sub_exp.pop(index)
+    sub_exp.pop(index - 1)
+    sub_exp.insert(index - 1, ExpTerm(result))
+
+    return sub_exp
 
 ## @brief Evaluates expression represented by list of \ref exp_term.ExpTerm "ExpTerm" classes and returns its value.
 # @param exp_list List of \ref exp_term.ExpTerm "ExpTerm" classes representing expression.
@@ -83,4 +98,38 @@ def find_max_priority_index(expresion: typing.List[ExpTerm]) -> int:
 def eval_expression(exp_list: typing.List[ExpTerm]) -> float:
     exp_list_copy = _create_exp_list_copy(exp_list)
     _preprocess_expression(exp_list_copy)
-    return 0
+
+    while True:
+        i = 0
+        open_bracket = 0
+        close_bracket = 0
+        while i < len(exp_list_copy):
+            if exp_list_copy[i].type() == "(":
+                open_bracket = i
+            elif exp_list_copy[i].type() == ")":
+                close_bracket = i
+            if open_bracket and close_bracket:
+                break
+            i += 1
+        
+        sub_exp = []
+        for i in range(open_bracket, close_bracket + 1):
+            sub_exp.append(exp_list_copy[i])
+        
+        index = find_max_priority_index(sub_exp)
+        while index != -1:
+            sub_exp = eval_subexp(sub_exp, index)
+            index = find_max_priority_index(sub_exp)
+        
+        count = 0
+        while count < close_bracket - open_bracket + 1:
+            exp_list_copy.pop(open_bracket)
+            count += 1
+        exp_list_copy.insert(open_bracket, sub_exp[1])
+
+        if len(exp_list_copy) == 1:
+            break
+
+    result = exp_list_copy[0].value()
+    
+    return result

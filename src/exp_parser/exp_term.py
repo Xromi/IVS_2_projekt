@@ -24,7 +24,7 @@ import typing
 class ExpTerm():
 
     # valid operators sorted by priority
-    __operators = ["-", "+", "/", "*", "%", "^", "!"]
+    __operators = ["+", "-", "/", "*", "%", "^", "!"]
 
     # returns ExpTerm type of term_value, if value does not correspond to any type ValueError is raised
     def __get_type(self, term_value) -> str:
