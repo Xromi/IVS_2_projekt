@@ -26,12 +26,8 @@ import typing
 class ExpTerm():
 
     # valid operators sorted by priority
-<<<<<<< HEAD
     __operators = ["+", "-", "/", "*", "%", "^", "!"]
-=======
-    __operators = ["-", "+", "/", "*", "%", "^", "!"]
     __constants = ["π", "e"]
->>>>>>> 1eec44b50a2a75be96827b0395c7b375557f1fb3
 
     # returns ExpTerm type of term_value, if value does not correspond to any type ValueError is raised
     def __get_type(self, term_value) -> str:
