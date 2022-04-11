@@ -55,7 +55,7 @@ def find_subexpresion(exp_list: typing.List[ExpTerm]) -> typing.List[ExpTerm]:
         elif exp_list[i].type() == ")":
             close_bracket = i
         if open_bracket and close_bracket:
-            break;
+            break
         i += 1
     
     sub_term = []
