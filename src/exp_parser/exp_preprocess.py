@@ -36,9 +36,17 @@ def _insert_implicit_multiplication(exp_list: typing.List[ExpTerm])  -> None:
             i += 1
         i += 1
 
+def _insert_brackets_after_power(exp_list: typing.List[ExpTerm])  -> None:
+    i = 1
+    while i < len(exp_list):
+        if exp_list[i].value() == "^" and exp_list[i + 1].value() != "(":
+            exp_list.insert(i + 1, ExpTerm("("))
+            exp_list.append(ExpTerm(")"))
+
+        i += 1
 
 # preprocesses expression before eval, whole expression is put in brackets, constants are replaced by their values, signedness is applied and implicit multiplication is inserted
-def preprocess_expression(exp_list: typing.List[ExpTerm]) -> None:
+def preprocess_expression(exp_list: typing.List[ExpTerm]) -> typing.List[ExpTerm]:
     # bracket whole expression
     exp_list.insert(0, ExpTerm("("))
     exp_list.append(ExpTerm(")"))
@@ -48,3 +56,7 @@ def preprocess_expression(exp_list: typing.List[ExpTerm]) -> None:
     _apply_signedness(exp_list)
 
     _insert_implicit_multiplication(exp_list)
+
+    _insert_brackets_after_power(exp_list)
+
+    return exp_list
