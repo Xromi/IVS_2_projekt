@@ -1,5 +1,6 @@
 import exp_parse
 import exp_validate
+import exp_eval
 
 print("Testing VALID expressions:")
 valid_expressions = open("test_exp_valid.txt", "r").read().splitlines()
