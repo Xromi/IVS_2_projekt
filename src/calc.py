@@ -18,7 +18,7 @@ def addtoExpression(num):
  
 def equal():
     global expression
-    final_expression = str(expression)            #vysledny string k predani na parse/eval
+    final_expression = str(expression)            #final_expression jest vysledny string ke zpracovani
        
     if len("EVAL HODNOTA")<50:                    #TODO dosadit EVAL hodnotu namisto "EVAL HODNOTA"
         textbox.set("EVAL HODNOTA")               #TODO dosadit EVAL hodnotu namisto "EVAL HODNOTA"
@@ -49,7 +49,6 @@ if __name__ == "__main__":
     expression_field = Entry(calcapp, font=("Arial 27"),fg='#FFFFFF', bg='#080808', textvariable = textbox)
     expression_field.grid(columnspan=4)
     
-    #button that opens user manual in .pdf
     helpButton = Button(calcapp, text='?', command=lambda: showman(), fg='black', bg='#AEA79F', height = 3, width = 7)
     helpButton.grid(row=0, column=4)
     calcapp.bind('h', lambda event: showman())
@@ -131,21 +130,25 @@ if __name__ == "__main__":
     command=lambda: addtoExpression('+'), height=4, width=7)
     plus.grid(row=6, column=3, rowspan = 2, ipady = 17)
     calcapp.bind('<KP_Add>', lambda event: addtoExpression('+'))
+    calcapp.bind('+', lambda event: addtoExpression('+'))
  
     minus = Button(calcapp, text='-', fg='black', bg='#E95420',
     command=lambda: addtoExpression('-'), height=3, width=7)
     minus.grid(row=5, column=3)
     calcapp.bind('<KP_Subtract>', lambda event: addtoExpression('-'))
+    calcapp.bind('-', lambda event: addtoExpression('-'))
     
     multiply = Button(calcapp, text='×', fg='black', bg='#E95420',
     command=lambda: addtoExpression('*'), height=3, width=7)
     multiply.grid(row=4, column=3)
     calcapp.bind('<KP_Multiply>', lambda event: addtoExpression('*'))
+    calcapp.bind('*', lambda event: addtoExpression('*'))
     
     divide = Button(calcapp, text='÷', fg='black', bg='#E95420',
     command=lambda: addtoExpression('/'), height=3, width=7)
     divide.grid(row=3, column=3)
     calcapp.bind('<KP_Divide>', lambda event: addtoExpression('/'))
+    calcapp.bind('/', lambda event: addtoExpression('/'))
     
     equals = Button(calcapp, text='=', fg='black', bg='#E95420',
     command=lambda: equal(), height=19, width=7)
@@ -198,4 +201,3 @@ if __name__ == "__main__":
     calcapp.bind('<Escape>', lambda event: qt())
     
     calcapp.mainloop()
-    
