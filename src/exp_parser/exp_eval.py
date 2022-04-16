@@ -7,6 +7,7 @@
 from exp_preprocess import preprocess_expression
 from math_lib import *
 from exp_term import ExpTerm
+from exp_validate import *
 import typing
 
 def find_max_priority_index(expresion: typing.List[ExpTerm]) -> int:
@@ -60,7 +61,10 @@ def eval_subexp(sub_exp: typing.List[ExpTerm], index: int) -> typing.List[ExpTer
 # @param exp_list List of \ref exp_term.ExpTerm "ExpTerm" classes representing expression.
 # @exception ValueError Exception ValueError is raised if invalid operations is to be executed (division by zero, factorial of negative number,...).
 # @return Returns value of expression represented by list of \ref exp_term.ExpTerm "ExpTerm" classes.
-def eval_expression(exp_list: typing.List[ExpTerm]) -> float:
+def eval_expression(exp_list: typing.List[ExpTerm]) -> str:
+    if validate_expression(exp_list) == False:
+        return "Invalid expresion"
+    
     exp_list = preprocess_expression(exp_list)
 
     while True:
@@ -95,5 +99,9 @@ def eval_expression(exp_list: typing.List[ExpTerm]) -> float:
             break
 
     result = exp_list[0].value()
+    if result == int(result):
+        result = int(result)
+
+    result = str(result)
     
     return result

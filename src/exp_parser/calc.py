@@ -2,6 +2,9 @@ from tkinter import *
 from tkinter import ttk
 import tkinter.font as font
 import os
+import exp_parse
+import exp_validate
+import exp_eval
 
 #TODO osetrit vystup - desetinna cisla s velkym celkem
 
@@ -18,10 +21,12 @@ def addtoExpression(num):
  
 def equal():
     global expression
-    final_expression = str(expression)            #final_expression jest vysledny string ke zpracovani
-       
-    if len("EVAL HODNOTA")<50:                    #TODO dosadit EVAL hodnotu namisto "EVAL HODNOTA"
-        textbox.set("EVAL HODNOTA")               #TODO dosadit EVAL hodnotu namisto "EVAL HODNOTA"
+    final_expression = str(expression)
+    exp_list = exp_parse.parse_expression(final_expression)
+    result = exp_eval.eval_expression(exp_list)
+    
+    if len(result)<50 :
+        textbox.set(result)
         expression = ""
     else:
         textbox.set("overflow error")
@@ -42,8 +47,8 @@ if __name__ == "__main__":
     calcapp.configure(background="#AEA79F")
     calcapp.title("CalculateIT Calculator")
     calcapp.geometry("376x316")
-    calcapp.minsize(376, 316)
-    calcapp.maxsize(376, 316)
+    calcapp.minsize(500, 480)
+    calcapp.maxsize(500, 480)
     
     textbox = StringVar()
     expression_field = Entry(calcapp, font=("Arial 27"),fg='#FFFFFF', bg='#080808', textvariable = textbox)
