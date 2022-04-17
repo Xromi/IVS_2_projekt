@@ -4,7 +4,7 @@
 # @version 0.1
 # @date 2022-04-10
 
-from exp_term import ExpTerm
+from exp_parser.exp_term import ExpTerm
 import typing
 
 # Returns true or false depending if expression bracketing is valid or not.

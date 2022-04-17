@@ -4,9 +4,9 @@
 # @version 0.5
 # @date 2022-04-12
 
-from exp_preprocess import preprocess_expression
+from exp_parser.exp_preprocess import preprocess_expression
+from exp_parser.exp_term import ExpTerm
 from math_lib import *
-from exp_term import ExpTerm
 import typing
 
 def find_max_priority_index(expresion: typing.List[ExpTerm]) -> int:
