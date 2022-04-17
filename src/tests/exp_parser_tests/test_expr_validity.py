@@ -1,17 +1,15 @@
-import exp_parse
-import exp_validate
-import exp_eval
+from exp_parser import *
 
 print("Testing VALID expressions:")
-valid_expressions = open("test_exp_valid.txt", "r").read().splitlines()
+valid_expressions = open("./tests/exp_parser_tests/test_exp_valid.txt", "r").read().splitlines()
 for exp in valid_expressions:
     try:
-        exp_list = exp_parse.parse_expression(exp)
+        exp_list = parse_expression(exp)
     except:
         print(f"FAIL: {exp}")
         continue
 
-    if exp_validate.validate_expression(exp_list) == False:
+    if validate_expression(exp_list) == False:
         print(f"FAIL: {exp}")
         continue
 
@@ -21,15 +19,15 @@ for exp in valid_expressions:
 print(28* "-")
 
 print("Testing INVALID expressions:")
-invalid_expressions = open("test_exp_invalid.txt", "r").read().splitlines()
+invalid_expressions = open("./tests/exp_parser_tests/test_exp_invalid.txt", "r").read().splitlines()
 for exp in invalid_expressions:
     try:
-        exp_list = exp_parse.parse_expression(exp)
+        exp_list = parse_expression(exp)
     except:
         print(f"OK: {exp}")
         continue
 
-    if exp_validate.validate_expression(exp_list) == False:
+    if validate_expression(exp_list) == False:
         print(f"OK: {exp}")
         continue
 
