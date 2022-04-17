@@ -1,7 +1,7 @@
 from exp_parser import *
 
 print("Testing expression results:")
-expressions = open("./tests/tests_exp_parser/test_exp_results.txt", "r").read().splitlines()
+expressions = open("./tests/exp_parser_tests/test_exp_results.txt", "r").read().splitlines()
 for exp in expressions:
     values=exp.split('=')
     try:
