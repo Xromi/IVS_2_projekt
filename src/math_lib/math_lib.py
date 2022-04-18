@@ -15,7 +15,7 @@ e = 2.718281828459045
 #
 # @exception TypeError Function raises TypeError when first or second term is not float or int data type
 #
-# @return Sum of x and y
+# @return Sum of x and y.
 def my_add(x, y):
 	if (type(x) != float and type(x) != int) or (type(y) != float and type(y) != int):
 		raise TypeError("First and second term have to be float or int numbers.")
