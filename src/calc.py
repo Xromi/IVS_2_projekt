@@ -3,9 +3,8 @@ from tkinter import ttk
 from array import array
 import tkinter.font as font
 import os
-import exp_parse
-import exp_validate
-import exp_eval
+from exp_parser import exp_parse
+from exp_parser import exp_eval
 
 expression = ""
 
@@ -30,12 +29,12 @@ def equal():
             textbox.set(result)
             expression = ""
         else:
-            textbox.set("overflow error")
+            textbox.set("OverflowError")
             expression = ""
     else:    
         splitRes = result.split('.', 1)
         if len(splitRes[0])>50:
-            textbox.set("overflow error")
+            textbox.set("OverflowError")
             expression = ""
         elif len(splitRes[0])+len(splitRes[1])<50:
             textbox.set(result)
@@ -44,7 +43,7 @@ def equal():
             result = result[0:49] 
             textbox.set(result)
         else:
-            textbox.set("overflow error")
+            textbox.set("OverflowError")
             expression = ""
         
 def c():

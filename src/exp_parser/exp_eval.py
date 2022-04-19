@@ -27,22 +27,56 @@ def find_max_priority_index(expresion: typing.List[ExpTerm]) -> int:
 
 def eval_subexp(sub_exp: typing.List[ExpTerm], index: int) -> typing.List[ExpTerm]:
     if sub_exp[index].value() == "+":
-        result = my_add(sub_exp[index - 1].value(), sub_exp[index + 1].value())
+        try:
+            result = my_add(sub_exp[index - 1].value(), sub_exp[index + 1].value())
+        except TypeError:
+            return TypeError
     elif sub_exp[index].value() == "-":
-        result = my_subtract(sub_exp[index - 1].value(), sub_exp[index + 1].value())
+        try:
+            result = my_subtract(sub_exp[index - 1].value(), sub_exp[index + 1].value())
+        except TypeError:
+            return TypeError
     elif sub_exp[index].value() == "*":
-        result = my_multiply(sub_exp[index - 1].value(), sub_exp[index + 1].value())
+        try:
+            result = my_multiply(sub_exp[index - 1].value(), sub_exp[index + 1].value())
+        except ZeroDivisionError:
+            return ZeroDivisionError
     elif sub_exp[index].value() == "/":
-        result = my_divide(sub_exp[index - 1].value(), sub_exp[index + 1].value())
+        try:
+            result = my_divide(sub_exp[index - 1].value(), sub_exp[index + 1].value())
+        except TypeError:
+            return TypeError
+        except ZeroDivisionError:
+            return ZeroDivisionError
     elif sub_exp[index].value() == "^":
-        result = my_power(sub_exp[index - 1].value(), sub_exp[index + 1].value())
+        try:
+            result = my_power(sub_exp[index - 1].value(), sub_exp[index + 1].value())
+        except TypeError:
+            return TypeError
+        except ValueError:
+            return ValueError
+        except OverflowError:
+            return OverflowError
     elif sub_exp[index].value() == "%":
-        result = my_modulo(sub_exp[index - 1].value(), sub_exp[index + 1].value())
+        try:
+            result = my_modulo(sub_exp[index - 1].value(), sub_exp[index + 1].value())
+        except TypeError:
+            return TypeError
     elif sub_exp[index].value() == "!":
         if sub_exp[index - 1].value() == int(sub_exp[index - 1].value()):
-            result = my_factorial(int(sub_exp[index - 1].value()))
+            try:
+                result = my_factorial(int(sub_exp[index - 1].value()))
+            except TypeError:
+                return TypeError
+            except OverflowError:
+                return OverflowError
         else:
-            result = my_factorial(sub_exp[index - 1].value())
+            try:
+                result = my_factorial(sub_exp[index - 1].value())
+            except TypeError:
+                return TypeError
+            except OverflowError:
+                return OverflowError
         result = float(result)
 
     if sub_exp[index].value() == "!":
@@ -63,7 +97,7 @@ def eval_subexp(sub_exp: typing.List[ExpTerm], index: int) -> typing.List[ExpTer
 # @return Returns value of expression represented by list of \ref exp_term.ExpTerm "ExpTerm" classes.
 def eval_expression(exp_list: typing.List[ExpTerm]) -> str:
     if validate_expression(exp_list) == False:
-        return "Invalid expresion"
+        return "InvalidExpresion"
     
     exp_list = preprocess_expression(exp_list)
 
@@ -87,6 +121,14 @@ def eval_expression(exp_list: typing.List[ExpTerm]) -> str:
         index = find_max_priority_index(sub_exp)
         while index != -1:
             sub_exp = eval_subexp(sub_exp, index)
+            if sub_exp == ZeroDivisionError:
+                return "ZeroDivisionError"
+            elif sub_exp == TypeError:
+                return "InvalidExpresion"
+            elif sub_exp == ValueError:
+                return "InvalidExpresion"
+            elif sub_exp == OverflowError:
+                return "OverflowError"
             index = find_max_priority_index(sub_exp)
         
         count = 0
@@ -100,7 +142,10 @@ def eval_expression(exp_list: typing.List[ExpTerm]) -> str:
 
     result = exp_list[0].value()
     if result == int(result):
-        result = int(result)
+        try:
+            result = int(result)
+        except ValueError:
+            return "InvalidExpresion"
 
     result = str(result)
     
