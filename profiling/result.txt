@@ -1,0 +1,22 @@
+         5000021 function calls in 0.998 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.012    0.012    0.998    0.998 <string>:1(<module>)
+        1    0.000    0.000    0.001    0.001 codecs.py:319(decode)
+  1000003    0.183    0.000    0.183    0.000 math_lib.py:102(my_power)
+        1    0.000    0.000    0.000    0.000 math_lib.py:123(my_root)
+  3000003    0.371    0.000    0.371    0.000 math_lib.py:19(my_add)
+        2    0.000    0.000    0.000    0.000 math_lib.py:34(my_subtract)
+        1    0.000    0.000    0.000    0.000 math_lib.py:49(my_multiply)
+        2    0.000    0.000    0.000    0.000 math_lib.py:65(my_divide)
+        1    0.375    0.375    0.986    0.986 standard_dev.py:6(std_dev)
+        1    0.001    0.001    0.001    0.001 {built-in method _codecs.utf_8_decode}
+        1    0.000    0.000    0.998    0.998 {built-in method builtins.exec}
+  1000001    0.023    0.000    0.023    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        1    0.002    0.002    0.003    0.003 {method 'read' of '_io.TextIOWrapper' objects}
+        1    0.030    0.030    0.030    0.030 {method 'split' of 'str' objects}
+
+
