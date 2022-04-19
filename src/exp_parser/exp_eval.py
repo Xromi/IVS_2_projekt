@@ -141,10 +141,11 @@ def eval_expression(exp_list: typing.List[ExpTerm]) -> str:
             break
 
     result = exp_list[0].value()
-    try:
-        result = int(result)
-    except ValueError:
-        return "InvalidExpresion"
+    if result == int(result):
+        try:
+            result = int(result)
+        except ValueError:
+            return "InvalidExpresion"
 
     result = str(result)
     
