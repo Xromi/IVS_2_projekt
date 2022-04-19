@@ -1,7 +1,7 @@
 from exp_parser import *
 
 print("Testing VALID expressions:")
-valid_expressions = open("./tests/exp_parser_tests/test_exp_valid.txt", "r").read().splitlines()
+valid_expressions = open("./tests/exp_parser_tests/td_valid.txt", "r").read().splitlines()
 for exp in valid_expressions:
     try:
         exp_list = parse_expression(exp)
@@ -19,7 +19,7 @@ for exp in valid_expressions:
 print(28* "-")
 
 print("Testing INVALID expressions:")
-invalid_expressions = open("./tests/exp_parser_tests/test_exp_invalid.txt", "r").read().splitlines()
+invalid_expressions = open("./tests/exp_parser_tests/td_invalid.txt", "r").read().splitlines()
 for exp in invalid_expressions:
     try:
         exp_list = parse_expression(exp)

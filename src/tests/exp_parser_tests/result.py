@@ -1,7 +1,7 @@
 from exp_parser import *
 
 print("Testing expression results:")
-expressions = open("./tests/exp_parser_tests/test_exp_results.txt", "r").read().splitlines()
+expressions = open("./tests/exp_parser_tests/td_results.txt", "r").read().splitlines()
 for exp in expressions:
     values=exp.split('=')
     try:
@@ -14,8 +14,10 @@ for exp in expressions:
         print(f"FAIL (Validation): '{values[0]}'")
         continue
 
-    if eval_expression(exp_list) != float(values[1]):
-        print(f"FAIL (Result): '{values[0]}'?={values[1]}")
+    if eval_expression(exp_list) != values[1]:
+        print(f"FAIL (Result): '{values[0]}'={values[1]}")
+        result = eval_expression(exp_list)
+        print(f"Result is->{result}")
         continue
 
     print(f"OK: '{values[0]}'={values[1]}")
