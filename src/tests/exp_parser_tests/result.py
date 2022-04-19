@@ -18,6 +18,7 @@ for exp in expressions:
         print(f"FAIL (Result): '{values[0]}'={values[1]}")
         result = eval_expression(exp_list)
         print(f"Result is->{result}")
+        print(f"")
         continue
 
     print(f"OK: '{values[0]}'={values[1]}")

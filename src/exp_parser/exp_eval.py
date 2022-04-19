@@ -97,7 +97,7 @@ def eval_subexp(sub_exp: typing.List[ExpTerm], index: int) -> typing.List[ExpTer
 # @return Returns value of expression represented by list of \ref exp_term.ExpTerm "ExpTerm" classes.
 def eval_expression(exp_list: typing.List[ExpTerm]) -> str:
     if validate_expression(exp_list) == False:
-        return "InvalidExpresion"
+        return "InvalidExpression"
     
     exp_list = preprocess_expression(exp_list)
 
@@ -124,9 +124,9 @@ def eval_expression(exp_list: typing.List[ExpTerm]) -> str:
             if sub_exp == ZeroDivisionError:
                 return "ZeroDivisionError"
             elif sub_exp == TypeError:
-                return "InvalidExpresion"
+                return "InvalidExpression"
             elif sub_exp == ValueError:
-                return "InvalidExpresion"
+                return "InvalidExpression"
             elif sub_exp == OverflowError:
                 return "OverflowError"
             index = find_max_priority_index(sub_exp)
@@ -145,7 +145,7 @@ def eval_expression(exp_list: typing.List[ExpTerm]) -> str:
         try:
             result = int(result)
         except ValueError:
-            return "InvalidExpresion"
+            return "InvalidExpression"
 
     result = str(result)
     
