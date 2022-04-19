@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from array import array
 import tkinter.font as font
 import os
 import exp_parse
@@ -23,8 +24,8 @@ def equal():
     exp_list = exp_parse.parse_expression(final_expression)
     result = exp_eval.eval_expression(exp_list)
     
-    commaFound = result.find(',', 0, 49)
-    if commaFound = -1:
+    commaFound = result.find('.', 0, 49)
+    if commaFound == -1:
         if len(result)<50:
             textbox.set(result)
             expression = ""
@@ -32,15 +33,15 @@ def equal():
             textbox.set("overflow error")
             expression = ""
     else:    
-        splitRes = result.split(',', 1)
-        if len(slpitRes[0])>50:
+        splitRes = result.split('.', 1)
+        if len(splitRes[0])>50:
             textbox.set("overflow error")
             expression = ""
         elif len(splitRes[0])+len(splitRes[1])<50:
             textbox.set(result)
             expression = ""
         elif len(splitRes[1])>50-len(splitRes[0]):
-            result = result[0;49] 
+            result = result[0:49] 
             textbox.set(result)
         else:
             textbox.set("overflow error")
@@ -185,6 +186,7 @@ if __name__ == "__main__":
     command=lambda: addtoExpression('.'), height=3, width=7)
     decimal.grid(row=6, column=1)
     calcapp.bind('<KP_Decimal>', lambda event: addtoExpression('.'))
+    calcapp.bind('.', lambda event: addtoExpression('.'))
     
     modulo= Button(calcapp, text='mod', fg='black', bg='#E95420',
     command=lambda: addtoExpression('%'), height=3, width=7)
