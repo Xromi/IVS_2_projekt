@@ -54,11 +54,11 @@ def _check_term_syntax(left_term: ExpTerm, term: ExpTerm, right_term: ExpTerm) -
         if term.value() == "!":
             left_pattern = ")NC"
         elif term.value() in ["+", "-"]:
-            left_pattern = "()NC!"
-            right_pattern = "(NC+-"
+            left_pattern = "()NC!*/%^_"
+            right_pattern = "(NC"
         elif term.value() in ["*", "/", "%", "^"]:
             left_pattern = ")NC!*/^%"
-            right_pattern = "(NC"
+            right_pattern = "+-(NC"
     elif term.type() == "C":
         pass
     elif term.type() == "(":
@@ -98,7 +98,7 @@ def _check_syntax(exp_list: typing.List[ExpTerm]) -> bool:
 # @param exp_list List of \ref exp_term.ExpTerm "ExpTerm" classes representing expression.
 # @return Returns true or false depending on if \p exp_list expression is valid or not.
 def validate_expression(exp_list: typing.List[ExpTerm]) -> bool:
-    if not _check_brackets(exp_list) or not _check_syntax(exp_list):
+    if len(exp_list) == 0 or not _check_brackets(exp_list) or not _check_syntax(exp_list):
         return False
     else:
         return True
