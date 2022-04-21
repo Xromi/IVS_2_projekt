@@ -61,8 +61,8 @@ if __name__ == "__main__":
     calcapp.configure(background="#AEA79F")
     calcapp.title("CalculateIT Calculator")
     calcapp.geometry("376x316")
-    calcapp.minsize(500, 480)
-    calcapp.maxsize(500, 480)
+    calcapp.minsize(376, 316)
+    calcapp.maxsize(376, 316)
     
     textbox = StringVar()
     expression_field = Entry(calcapp, font=("Arial 27"),fg='#FFFFFF', bg='#080808', textvariable = textbox)
