@@ -1,4 +1,3 @@
-
 #install: math_lib.so
 #	pyinstaller --onefile --add-binary="math_lib.so:." --log-level=WARN --name="calc" calc.py
 # 	rm -f -r __pycache__

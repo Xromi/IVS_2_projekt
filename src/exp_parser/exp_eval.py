@@ -1,8 +1,8 @@
 ## @file exp_eval.py
 # @author David Klajbl, Marián Tarageľ
 # @brief Evaluator of expressions
-# @version 0.5
-# @date 2022-04-12
+# @version 0.6
+# @date 2022-04-21
 
 from exp_parser.exp_preprocess import preprocess_expression
 from exp_parser.exp_validate import validate_expression
@@ -10,6 +10,12 @@ from exp_parser.exp_term import ExpTerm
 from math_lib import *
 import typing
 
+##
+# @brief Function finds operator with the highest priority
+# 
+# @param expression list to search for operator
+#
+# @return position of operator with highest priority in list or -1 when opearator is not in list
 def find_max_priority_index(expresion: typing.List[ExpTerm]) -> int:
     i = 0
     max_priority = 0
@@ -25,76 +31,87 @@ def find_max_priority_index(expresion: typing.List[ExpTerm]) -> int:
     else:
         return max_index
 
-def eval_subexp(sub_exp: typing.List[ExpTerm], index: int) -> typing.List[ExpTerm]:
-    if sub_exp[index].value() == "+":
+## 
+# @brief Fuction to evaluate subexpression
+# subexpersion is expression with one operator which position is specified by index and numbers before and after operator
+# 
+# @param exp_list whole expresion list
+# @param index position in exp_list where opearator can be found
+#
+# @return exp_list with operator and numbers replaced by their value or error rised from math_lib
+def eval_subexp(exp_list: typing.List[ExpTerm], index: int) -> typing.List[ExpTerm]:
+    if exp_list[index].value() == "+":
         try:
-            result = my_add(sub_exp[index - 1].value(), sub_exp[index + 1].value())
+            result = my_add(exp_list[index - 1].value(), exp_list[index + 1].value())
         except TypeError:
             return TypeError
-    elif sub_exp[index].value() == "-":
+    elif exp_list[index].value() == "-":
         try:
-            result = my_subtract(sub_exp[index - 1].value(), sub_exp[index + 1].value())
+            result = my_subtract(exp_list[index - 1].value(), exp_list[index + 1].value())
         except TypeError:
             return TypeError
-    elif sub_exp[index].value() == "*":
+    elif exp_list[index].value() == "*":
         try:
-            result = my_multiply(sub_exp[index - 1].value(), sub_exp[index + 1].value())
+            result = my_multiply(exp_list[index - 1].value(), exp_list[index + 1].value())
         except ZeroDivisionError:
             return ZeroDivisionError
-    elif sub_exp[index].value() == "/":
+    elif exp_list[index].value() == "/":
         try:
-            result = my_divide(sub_exp[index - 1].value(), sub_exp[index + 1].value())
+            result = my_divide(exp_list[index - 1].value(), exp_list[index + 1].value())
         except TypeError:
             return TypeError
         except ZeroDivisionError:
             return ZeroDivisionError
-    elif sub_exp[index].value() == "^":
+    elif exp_list[index].value() == "^":
         try:
-            result = my_power(sub_exp[index - 1].value(), sub_exp[index + 1].value())
+            result = my_power(exp_list[index - 1].value(), exp_list[index + 1].value())
         except TypeError:
             return TypeError
         except ValueError:
             return ValueError
         except OverflowError:
             return OverflowError
-    elif sub_exp[index].value() == "%":
+    elif exp_list[index].value() == "%":
         try:
-            result = my_modulo(sub_exp[index - 1].value(), sub_exp[index + 1].value())
+            result = my_modulo(exp_list[index - 1].value(), exp_list[index + 1].value())
         except TypeError:
             return TypeError
-    elif sub_exp[index].value() == "!":
-        if sub_exp[index - 1].value() == int(sub_exp[index - 1].value()):
+    elif exp_list[index].value() == "!":
+        if exp_list[index - 1].value() == int(exp_list[index - 1].value()):
             try:
-                result = my_factorial(int(sub_exp[index - 1].value()))
+                result = my_factorial(int(exp_list[index - 1].value()))
+                result = float(result)
             except TypeError:
                 return TypeError
             except OverflowError:
                 return OverflowError
         else:
             try:
-                result = my_factorial(sub_exp[index - 1].value())
+                result = my_factorial(exp_list[index - 1].value())
+                result = float(result)
             except TypeError:
                 return TypeError
             except OverflowError:
                 return OverflowError
-        result = float(result)
 
-    if sub_exp[index].value() == "!":
-        sub_exp.pop(index - 1)
-        sub_exp.pop(index - 1)
-        sub_exp.insert(index - 1, ExpTerm(result))
+    if exp_list[index].value() == "!":
+        exp_list.pop(index - 1)
+        exp_list.pop(index - 1)
+        exp_list.insert(index - 1, ExpTerm(result))
     else:
-        sub_exp.pop(index)
-        sub_exp.pop(index)
-        sub_exp.pop(index - 1)
-        sub_exp.insert(index - 1, ExpTerm(result))
+        exp_list.pop(index)
+        exp_list.pop(index)
+        exp_list.pop(index - 1)
+        exp_list.insert(index - 1, ExpTerm(result))
 
-    return sub_exp
+    return exp_list
 
-## @brief Evaluates expression represented by list of \ref exp_term.ExpTerm "ExpTerm" classes and returns its value.
+## 
+# @brief Evaluates expression represented by list of \ref exp_term.ExpTerm "ExpTerm" classes.
+#
 # @param exp_list List of \ref exp_term.ExpTerm "ExpTerm" classes representing expression.
-# @exception ValueError Exception ValueError is raised if invalid operations is to be executed (division by zero, factorial of negative number,...).
-# @return Returns value of expression represented by list of \ref exp_term.ExpTerm "ExpTerm" classes.
+#
+# @return Returns value of expression represented by list of \ref exp_term.ExpTerm "ExpTerm" classes or Error message.
 def eval_expression(exp_list: typing.List[ExpTerm]) -> str:
     if validate_expression(exp_list) == False:
         return "InvalidExpression"
