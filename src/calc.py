@@ -21,12 +21,6 @@ def equal():
     final_expression = str(expression)
     try:
         exp_list = exp_parse.parse_expression(final_expression)
-        exp_eval.eval_expression(exp_list)
-    
-    except ZeroDivisionError:
-        textbox.set("ZeroDivisionError")
-        final_expression = ""
-        expression = ""
     
     except:
         textbox.set("InvalidExpression")
@@ -35,31 +29,37 @@ def equal():
     
     else:    
         result = exp_eval.eval_expression(exp_list)    
-        commaFound = result.find('.', 0, 49)
+        if result == "ZeroDivisionError"
+            textbox.set("ZeroDivisionError")
+            final_expression = ""
+            expression = ""
         
-        if commaFound == -1:
-            if len(result)<50:
-                textbox.set(result)
-                expression = result
-            else:
-                textbox.set("OverflowError")
-                expression = ""
+        else:
+            commaFound = result.find('.', 0, 49)
+                
+            if commaFound == -1:
+                if len(result)<50:
+                    textbox.set(result)
+                    expression = result
+                else:
+                    textbox.set("OverflowError")
+                    expression = ""
        
-        else:    
-            splitRes = result.split('.', 1)
-            if len(splitRes[0])>50:
-                textbox.set("OverflowError")
-                expression = ""
-            elif len(splitRes[0])+len(splitRes[1])<50:
-                textbox.set(result)
-                expression = result
-            elif len(splitRes[1])>50-len(splitRes[0]):
-                result = result[0:49] 
-                textbox.set(result)
-                expression = result
-            else:
-                textbox.set("OverflowError")
-                expression = ""
+            else:    
+                splitRes = result.split('.', 1)
+                if len(splitRes[0])>50:
+                    textbox.set("OverflowError")
+                    expression = ""
+                elif len(splitRes[0])+len(splitRes[1])<50:
+                    textbox.set(result)
+                    expression = result
+                elif len(splitRes[1])>50-len(splitRes[0]):
+                    result = result[0:49] 
+                    textbox.set(result)
+                    expression = result
+                else:
+                    textbox.set("OverflowError")
+                    expression = ""
         
 def c():
     global expression
