@@ -26,14 +26,23 @@ def _apply_signedness(exp_list: typing.List[ExpTerm]) -> None:
 def _insert_implicit_multiplication(exp_list: typing.List[ExpTerm])  -> None:
     i = 1
     while i < len(exp_list):
-        if exp_list[i].type() == "(" and (exp_list[i-1].type() == "N" or exp_list[i-1].value() in [")", "!"]):
+        
+        insert_multiplication = False
+
+        if exp_list[i].type() == "(" and (exp_list[i-1].type() in "N" or exp_list[i-1].value() in [")", "!"]):
             # '3()' -> '3*()' | '()()' -> '()*()' | '3!()' -> '3!*()'
-            exp_list.insert(i, ExpTerm("*"))
-            i += 1
+            insert_multiplication = True
         elif exp_list[i].type() == "N" and exp_list[i-1].value() in [")", "!"]:
             # '()3' -> '()*3' | '2!3' -> '2!*3'
+            insert_multiplication = True
+        elif exp_list[i].type() == "N" and exp_list[i-1].type() == "N":
+            # 'e3' -> 'e*3' (constant was replaced by number in _evaluate_constants function)
+            insert_multiplication = True
+            
+        if insert_multiplication:
             exp_list.insert(i, ExpTerm("*"))
             i += 1
+            
         i += 1
 
 # preprocesses expression before eval, whole expression is put in brackets, constants are replaced by their values, signedness is applied and implicit multiplication is inserted
