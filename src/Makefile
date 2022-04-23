@@ -9,14 +9,22 @@ install_dependencies:
 doc:
 	doxygen Doxyfile
 
-test_math_lib:
+run:
+	python3 ./calc.py
+
+test:
 	python3 -m tests.math_lib_tests.test_math_lib
 
-test_exp_valididy:
+test_exp_validity:
 	python3 -m tests.exp_parser_tests.validity
 
 test_exp_results:
 	python3 -m tests.exp_parser_tests.result
+
+test_all: test test_exp_validity test_exp_results
+
+profile:
+	python3 ./standard_dev.py < tests/standard_dev_test_data/1000_n.txt
 
 .PHONY: clean doc install_dependencies test_math_lib
 
