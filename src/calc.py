@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter import ttk
 from array import array
-import tkinter.font as font
 import os
 from exp_parser import exp_parse
 from exp_parser import exp_eval
@@ -61,8 +60,8 @@ if __name__ == "__main__":
     calcapp.configure(background="#AEA79F")
     calcapp.title("CalculateIT Calculator")
     calcapp.geometry("422x339")
-    calcapp.minsize(422, 339)
-    calcapp.maxsize(422, 339)
+    calcapp.minsize(421, 339)
+    calcapp.maxsize(421, 339)
     
     textbox = StringVar()
     expression_field = Entry(calcapp, font=("Arial 22"),fg='#FFFFFF', bg='#080808', textvariable = textbox)
