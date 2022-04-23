@@ -19,31 +19,39 @@ def addtoExpression(num):
 def equal():
     global expression
     final_expression = str(expression)
-    exp_list = exp_parse.parse_expression(final_expression)
-    result = exp_eval.eval_expression(exp_list)
+    try:
+        exp_list = exp_parse.parse_expression(final_expression)
+        exp_eval.eval_expression(exp_list)
     
-    commaFound = result.find('.', 0, 49)
-    if commaFound == -1:
-        if len(result)<50:
-            textbox.set(result)
-            expression = ""
-        else:
-            textbox.set("OverflowError")
-            expression = ""
+    except:
+        textbox.set("InvalidExpression")
+        final_expression = ""
+        expression = ""
+    
     else:    
-        splitRes = result.split('.', 1)
-        if len(splitRes[0])>50:
-            textbox.set("OverflowError")
-            expression = ""
-        elif len(splitRes[0])+len(splitRes[1])<50:
-            textbox.set(result)
-            expression = ""
-        elif len(splitRes[1])>50-len(splitRes[0]):
-            result = result[0:49] 
-            textbox.set(result)
-        else:
-            textbox.set("OverflowError")
-            expression = ""
+        result = exp_eval.eval_expression(exp_list)    
+        commaFound = result.find('.', 0, 49)
+        
+        if commaFound == -1:
+            if len(result)<50:
+                textbox.set(result)
+            else:
+                textbox.set("OverflowError")
+                expression = ""
+       
+        else:    
+            splitRes = result.split('.', 1)
+            if len(splitRes[0])>50:
+                textbox.set("OverflowError")
+                expression = ""
+            elif len(splitRes[0])+len(splitRes[1])<50:
+                textbox.set(result)            
+            elif len(splitRes[1])>50-len(splitRes[0]):
+                result = result[0:49] 
+                textbox.set(result)
+            else:
+                textbox.set("OverflowError")
+                expression = ""
         
 def c():
     global expression
@@ -64,7 +72,7 @@ if __name__ == "__main__":
     calcapp.maxsize(421, 339)
     
     textbox = StringVar()
-    expression_field = Entry(calcapp, font=("Arial 22"),fg='#FFFFFF', bg='#080808', textvariable = textbox)
+    expression_field = Entry(calcapp, font=("Arial 22"),fg='#FFFFFF', bg='#080808', textvariable = textbox, state=DISABLED, disabledbackground='#080808', disabledforeground='#FFFFFF')
     expression_field.grid(columnspan=4)
     
     #button to open "help" (manual)
