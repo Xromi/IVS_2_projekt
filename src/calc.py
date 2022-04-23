@@ -23,6 +23,11 @@ def equal():
         exp_list = exp_parse.parse_expression(final_expression)
         exp_eval.eval_expression(exp_list)
     
+    except ZeroDivisionError:
+        textbox.set("ZeroDivisionError")
+        final_expression = ""
+        expression = ""
+    
     except:
         textbox.set("InvalidExpression")
         final_expression = ""
