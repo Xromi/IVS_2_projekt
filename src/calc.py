@@ -29,7 +29,7 @@ def equal():
     
     else:    
         result = exp_eval.eval_expression(exp_list)    
-        if result == "ZeroDivisionError"
+        if result == "ZeroDivisionError":
             textbox.set("ZeroDivisionError")
             final_expression = ""
             expression = ""
