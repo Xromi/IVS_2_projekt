@@ -40,6 +40,7 @@ def equal():
         if commaFound == -1:
             if len(result)<50:
                 textbox.set(result)
+                expression = result
             else:
                 textbox.set("OverflowError")
                 expression = ""
@@ -50,10 +51,12 @@ def equal():
                 textbox.set("OverflowError")
                 expression = ""
             elif len(splitRes[0])+len(splitRes[1])<50:
-                textbox.set(result)            
+                textbox.set(result)
+                expression = result
             elif len(splitRes[1])>50-len(splitRes[0]):
                 result = result[0:49] 
                 textbox.set(result)
+                expression = result
             else:
                 textbox.set("OverflowError")
                 expression = ""
