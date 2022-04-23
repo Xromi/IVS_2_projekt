@@ -98,7 +98,7 @@ def _check_syntax(exp_list: typing.List[ExpTerm]) -> bool:
 # @param exp_list List of \ref exp_term.ExpTerm "ExpTerm" classes representing expression.
 # @return Returns true or false depending on if \p exp_list expression is valid or not.
 def validate_expression(exp_list: typing.List[ExpTerm]) -> bool:
-    if len(exp_list) == 0 or not _check_brackets(exp_list) or not _check_syntax(exp_list):
+    if not _check_brackets(exp_list) or not _check_syntax(exp_list):
         return False
     else:
         return True

@@ -115,7 +115,10 @@ def eval_subexp(exp_list: typing.List[ExpTerm], index: int) -> typing.List[ExpTe
 def eval_expression(exp_list: typing.List[ExpTerm]) -> str:
     if validate_expression(exp_list) == False:
         return "InvalidExpression"
-    
+
+    if len(exp_list) == 0:
+        return ""
+
     exp_list = preprocess_expression(exp_list)
 
     while True:
