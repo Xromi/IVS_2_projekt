@@ -35,33 +35,47 @@ def equal():
         try:
             # test if result is float
             float(result)
-                
-            if result.find('.') == -1:
-                if len(result) >= 50:
+            
+            if result.find('e') != -1:
+                result = "OverflowError"
+                raise OverflowError()
+            
+               
+            if result.find('.') == -1: 
+                if len(result) > 22:
                     result = "OverflowError"
                     raise OverflowError()
-       
+            
             else:
                 splitRes = result.split('.', 1)
-                if len(splitRes[0]) >= 50:
+                if len(splitRes[0]) >= 22:
                     result = "OverflowError"
                     raise OverflowError()
-                elif len(result) < 50:
+                elif len(result) <= 22:
+                    result = str(splitRes[0] + '.' + splitRes[1][:10]) 
                     pass
-                elif len(splitRes[1]) > 50-len(splitRes[0]):
-                    result = result[0:49] 
+                elif len(splitRes[1]) > 20-len(splitRes[0]):
+                    result = str(splitRes[0] + '.' + splitRes[1][:10])
+                    result = result[0:21] 
                     pass
                 else:
                     result = "OverflowError"
                     raise OverflowError()
+                
         except:
             textbox.set(result)
             final_expression = ""
             expression = ""
 
         else:
-            textbox.set(result)
-            expression = result
+            if result.find('e') == -1:
+                textbox.set(result)
+                expression = result
+            else:
+                result = "OverflowError"
+                textbox.set(result)
+                final_expression = ""
+                expression = ""
         
 def c():
     global expression
