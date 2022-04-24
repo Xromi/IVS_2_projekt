@@ -77,16 +77,16 @@ if __name__ == "__main__":
     
     calcapp.configure(background="#AEA79F")
     calcapp.title("CalculateIT Calculator")
-    calcapp.geometry("422x339")
-    calcapp.minsize(421, 339)
-    calcapp.maxsize(421, 339)
+    calcapp.geometry("414x338")
+    calcapp.minsize(414, 338)
+    calcapp.maxsize(414, 338)
     
     textbox = StringVar()
-    expression_field = Entry(calcapp, font=("Arial 22"),fg='#FFFFFF', bg='#080808', textvariable = textbox, state=DISABLED, disabledbackground='#080808', disabledforeground='#FFFFFF')
+    expression_field = Entry(calcapp, font=("Arial 19"),fg='#FFFFFF', bg='#080808', textvariable = textbox, state=DISABLED, disabledbackground='#080808', disabledforeground='#FFFFFF', width=22)
     expression_field.grid(columnspan=4)
     
     #button to open "help" (manual)
-    helpButton = Button(calcapp, text='?', command=lambda: showman(), fg='black', bg='#AEA79F', height=2 , width=7)
+    helpButton = Button(calcapp, text='?', command=lambda: showman(), fg='black', bg='#AEA79F', height=2 , width=6)
     helpButton.grid(row=0, column=4)
     calcapp.bind('h', lambda event: showman())
     
@@ -188,7 +188,7 @@ if __name__ == "__main__":
     calcapp.bind('/', lambda event: addtoExpression('/'))
     
     equals = Button(calcapp, text='=', fg='black', bg='#E95420',
-    command=lambda: equal(), height=12, width=7)
+    command=lambda: equal(), height=12, width=6)
     equals.grid(row=3, column=4, rowspan=5, ipady=11)
     calcapp.bind('<Return>', lambda event: equal())
     calcapp.bind('<KP_Enter>', lambda event: equal())
@@ -206,7 +206,7 @@ if __name__ == "__main__":
     calcapp.bind('.', lambda event: addtoExpression('.'))
     
     modulo= Button(calcapp, text='mod', fg='black', bg='#E95420',
-    command=lambda: addtoExpression('%'), height=2, width=7)
+    command=lambda: addtoExpression('%'), height=2, width=6)
     modulo.grid(row=2, column=4)
     calcapp.bind('%', lambda event: addtoExpression('%'))
     
