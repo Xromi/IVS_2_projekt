@@ -61,21 +61,15 @@ def equal():
                 else:
                     result = "OverflowError"
                     raise OverflowError()
-                
+        
         except:
             textbox.set(result)
             final_expression = ""
             expression = ""
 
         else:
-            if result.find('e') == -1:
-                textbox.set(result)
-                expression = result
-            else:
-                result = "OverflowError"
-                textbox.set(result)
-                final_expression = ""
-                expression = ""
+            textbox.set(result)
+            expression = result
         
 def c():
     global expression
