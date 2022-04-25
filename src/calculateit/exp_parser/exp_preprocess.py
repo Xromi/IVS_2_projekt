@@ -1,5 +1,5 @@
-from exp_parser.exp_term import ExpTerm
-import math_lib as math_lib
+from ..exp_parser.exp_term import ExpTerm
+from ..math_lib import math_lib
 import typing
 
 def _evaluate_constants(exp_list: typing.List[ExpTerm]) -> None:

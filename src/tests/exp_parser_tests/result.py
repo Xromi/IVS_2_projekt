@@ -1,4 +1,6 @@
-from exp_parser import *
+from calculateit.exp_parser.exp_parse import parse_expression
+from calculateit.exp_parser.exp_validate import validate_expression
+from calculateit.exp_parser.exp_eval import eval_expression
 
 print("Testing expression results:")
 expressions = open("./tests/exp_parser_tests/td_results.txt", "r").read().splitlines()
