@@ -4,10 +4,10 @@
 # @version 0.6
 # @date 2022-04-21
 
-from exp_parser.exp_preprocess import preprocess_expression
-from exp_parser.exp_validate import validate_expression
-from exp_parser.exp_term import ExpTerm
-from math_lib import *
+from ..exp_parser.exp_preprocess import preprocess_expression
+from ..exp_parser.exp_validate import validate_expression
+from ..exp_parser.exp_term import ExpTerm
+from ..math_lib.math_lib import *
 import typing
 
 ##

@@ -1,6 +1,5 @@
-from decimal import DivisionByZero
 import unittest
-from math_lib import *
+from calculateit.math_lib.math_lib import *
 
 class TestMathLib(unittest.TestCase):
 

@@ -10,7 +10,7 @@ doc:
 	doxygen Doxyfile
 
 run:
-	python3 ./calc.py
+	python3 -m calculateit.calc
 
 test:
 	python3 -m tests.math_lib_tests.test_math_lib

@@ -1,6 +1,6 @@
 import cProfile
 import sys
-from math_lib import *
+from calculateit.math_lib.math_lib import *
 
 
 def std_dev():
