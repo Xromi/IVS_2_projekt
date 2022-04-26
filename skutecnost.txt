@@ -1,1 +1,3 @@
-tento soubor bude obsahovat rozdil mezi planem projektu a skutecnosti
+Naplánované úlohy boli ukončené prevažne na čas, s občasným meškaním ktoré nepresahovalo zmysluplnú dobu, čiže maxímálne 2-3 dni po tímom stanovenom deadline.
+Nevznikli próblemy ako čakanie na prácu ostatných členov tímu a udelené úlohy dokázal každý člen tímu splniť.
+Priebeh vývoju bol relatívne stabilný. Pracovalo sa priebežne.
