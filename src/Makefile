@@ -23,6 +23,16 @@ test_exp_results:
 
 test_all: test test_exp_validity test_exp_results
 
+build-clean:
+	rm -f -r CalculateIT.egg-info dist deb_dist CalculateIT-1.0.tar.gz debian
+
+build-deb:
+	python3 setup.py --command-packages=stdeb.command sdist_dsc
+	cd deb_dist && cd calculateit-1.0 && dpkg-buildpackage -rfakeroot -uc -b
+	cd deb_dist && mv *.deb ..
+
+build: build-deb build-clean
+
 profile:
 	python3 ./standard_dev.py < tests/standard_dev_test_data/1000_n.txt
 

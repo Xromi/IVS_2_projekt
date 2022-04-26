@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=CalculateIT
+Comment=Minimal stdeb example
+Exec=calculateit
+Icon=/usr/share/icons/calculateit.xpm
+Categories=Utility;
+Terminal=false
+StartupNotify=true
+StartupWMClass=calculateit
