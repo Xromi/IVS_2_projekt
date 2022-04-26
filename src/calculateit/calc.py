@@ -81,6 +81,9 @@ def qt():
     
 calcapp = Tk()
 
+img = PhotoImage(file = "calc.gif")
+calcapp.iconphoto(False, img)
+
 calcapp.configure(background="#AEA79F")
 calcapp.title("CalculateIT Calculator")
 calcapp.geometry("414x338")
