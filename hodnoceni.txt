@@ -1,4 +1,4 @@
-xlogin01 100 (základ GUI a základní mat. operace)
-xlogin02 100 (pokročilé mat. operace)
-xlogin03 90 (profiling, instalátor)
-xlogin04 110 (testy, dokumentace)
+xhorva17 100 (profiling, testy)
+xchrom19 100 (GUI, uživatelská příručka)
+xklajb00 100 (parser výrazů, instalátor)
+xtarag01 100 (evaluátor výrazů, mockup, debugging)
