@@ -14,12 +14,12 @@ X 11.4.22       Návrh testov spracovania výrazov - xhorva17
 X 11.4.22	Implementace GUI - xchrom19
 X 11.4.22	Implementace parseru vyrazov - xtarag01, xklajb00
 X 15.4.22       Akceptační testy - všichni
+X 16.4.22     Testy a implementácia EVAL - xhorva17
+X 16.4.22     debugging - xtarag01
     
-    16.4.22     Testy a implementácia EVAL - xhorva17
-    16.4.22     debugging - xtarag01
-    20.4.22	Uživatelská příručka - xchrom19
-    20.4.22	Mockup - xchrom19
-    24.4.22	Instalátor - xhorva17, xklajb00, xtarag01
+X   20.4.22	Mockup - xchrom19
+X   24.4.22	Instalátor - xhorva17, xklajb00, xtarag01
+    28.4.22	Uživatelská příručka - xchrom19
     28.4.22     .zip súbor
 
 Komunikační kanály: 

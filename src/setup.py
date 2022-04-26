@@ -12,9 +12,11 @@ setup(
     entry_points = {
         'gui_scripts' : ['calculateit = calculateit.calc:main']
     },
+    package_data = {'calculateit': ['calculateit_icon.gif']},
+    include_package_data=True,
     data_files = [
         ('share/applications/', ['calculateit.desktop']),
-        ('share/icons/', ['calculateit.xpm'])
+        ('share/icons/calculateit', ['./calculateit/calculateit_icon.gif'])
     ],
     classifiers=[
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",

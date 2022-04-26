@@ -1,5 +1,6 @@
 from .exp_parser import exp_parse
 from .exp_parser import exp_eval
+import os
 from tkinter import *
 
 
@@ -81,7 +82,7 @@ def qt():
     
 calcapp = Tk()
 
-img = PhotoImage(file = "calc.gif")
+img = PhotoImage(file = (os.path.dirname(os.path.realpath(__file__))+ "/calculateit_icon.gif"))
 calcapp.iconphoto(False, img)
 
 calcapp.configure(background="#AEA79F")
