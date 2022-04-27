@@ -77,6 +77,8 @@ def my_divide(x, y):
 #
 # @return Factorial of x
 def my_factorial(x):
+	if (x > 20):
+		raise OverflowError
 	if (type(x) != int):
 		raise TypeError("Number have to be int number.")
 	elif x < 0:
