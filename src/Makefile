@@ -1,16 +1,21 @@
-#install: math_lib.so
-#	pyinstaller --onefile --add-binary="math_lib.so:." --log-level=WARN --name="calc" calc.py
-# 	rm -f -r __pycache__
+all:
+	echo "Nothing to build."
 
-install_dependencies:
-	sudo apt update
-	sudo apt install build-essential doxygen python3
+##############
 
 doc:
 	doxygen Doxyfile
 
+##############
+
+install_run_dependencies:
+	sudo apt update
+	sudo apt install build-essential doxygen python3 python3-tk
+
 run:
 	python3 -m calculateit.calc
+
+##############
 
 test:
 	python3 -m tests.math_lib_tests.test_math_lib
@@ -23,20 +28,47 @@ test_exp_results:
 
 test_all: test test_exp_validity test_exp_results
 
-build-clean:
-	rm -f -r CalculateIT.egg-info dist deb_dist CalculateIT-1.0.tar.gz debian
+##############
 
-build-deb:
+install_build_dependencies:
+	sudo apt update
+	sudo apt install build-essential python3 python3-tk python3-all python3-pip python3-stdeb dh-python dh-make
+	pip3 install stdeb stem
+
+build:
 	python3 setup.py --command-packages=stdeb.command sdist_dsc
 	cd deb_dist && cd calculateit-1.0 && dpkg-buildpackage -rfakeroot -uc -b
 	cd deb_dist && mv *.deb ..
+	rm -rf CalculateIT* dist deb_dist debian
 
-build: build-deb build-clean
+build-clean:
+	rm -rf CalculateIT* dist deb_dist debian *.deb
+
+##############
 
 profile:
 	python3 ./standard_dev.py < tests/standard_dev_test_data/1000_n.txt
 
-.PHONY: clean doc install_dependencies test_math_lib
+##############
 
-clean:
-	rm -f -r *.so *.o *.spec __pycache__  doc warning_doxygen.txt
+zip_name=xhorva17_xchrom19_xklajb00_xtarag01
+
+pack: clean doc build
+	rm -rf $(zip_name) $(zip_name).zip
+	mkdir $(zip_name) $(zip_name)/doc $(zip_name)/install $(zip_name)/repo
+	rsync -a ../ $(zip_name)/repo/ --exclude $(zip_name) --exclude *.deb --exclude doc
+	cp -r doc/html/* $(zip_name)/doc
+	cp *.deb $(zip_name)/install
+	zip -r $(zip_name).zip $(zip_name)
+	rm -rf $(zip_name)
+
+##############
+
+.PHONY: clean doc profile run pack all \
+		install_run_dependencies install_build_dependencies \
+		build build-clean \
+		test test_all test_exp_results test_exp_validity test_math_lib
+
+clean: build-clean
+	rm -rf doc warning_doxygen.txt $(zip_name) $(zip_name).zip
+	find . -type d -name "__pycache__" -prune -exec rm -rf {} \;
