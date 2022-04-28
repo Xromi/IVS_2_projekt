@@ -2,13 +2,13 @@ from .exp_parser import exp_parse
 from .exp_parser import exp_eval
 import os
 from tkinter import *
+import webbrowser
 
 
 expression = ""
 
 def showman():
-    import webbrowser
-    webbrowser.open_new(r'dokumentace.pdf')       #TODO az bude hotova dokumentace.pdf (prirucka), tak cestu namisto 'dokumentace.pdf'
+    webbrowser.open_new(os.path.dirname(os.path.realpath(__file__)) + "/dokumentace.pdf")
 
 def addtoExpression(num):
     global expression
