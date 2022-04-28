@@ -36,10 +36,11 @@ test_all: test test_exp_validity test_exp_results
 
 install_build_dependencies:
 	sudo apt update
-	sudo apt install build-essential python3 python3-tk python3-all python3-pip python3-stdeb dh-python dh-make
+	sudo apt install build-essential python3 python3-tk python3-all python-all python3-pip python3-stdeb dh-python dh-make
 	pip3 install stdeb stem
 
 build:
+	rm -rf CalculateIT* dist deb_dist debian *.deb
 	python3 setup.py --command-packages=stdeb.command sdist_dsc
 	cd deb_dist && cd calculateit-1.0 && dpkg-buildpackage -rfakeroot -uc -b
 	cd deb_dist && mv *.deb ..
