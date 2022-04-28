@@ -16,13 +16,13 @@ import typing
 # @param expression list to search for operator
 #
 # @return position of operator with highest priority in list or -1 when opearator is not in list
-def find_max_priority_index(expresion: typing.List[ExpTerm]) -> int:
+def find_max_priority_index(expression: typing.List[ExpTerm]) -> int:
     i = 0
     max_priority = 0
     max_index = 0
-    while i < len(expresion):
-        if max_priority < expresion[i].priority():
-            max_priority = expresion[i].priority()
+    while i < len(expression):
+        if max_priority < expression[i].priority():
+            max_priority = expression[i].priority()
             max_index = i
         i += 1
     
@@ -35,7 +35,7 @@ def find_max_priority_index(expresion: typing.List[ExpTerm]) -> int:
 # @brief Fuction to evaluate subexpression
 # subexpersion is expression with one operator which position is specified by index and numbers before and after operator
 # 
-# @param exp_list whole expresion list
+# @param exp_list whole expression list
 # @param index position in exp_list where opearator can be found
 #
 # @return exp_list with operator and numbers replaced by their value or error rised from math_lib
