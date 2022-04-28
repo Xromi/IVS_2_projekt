@@ -24,7 +24,7 @@
 ---
 
 ## Generating documentation
-`make install_doc_dependencies`
+### `make install_doc_dependencies`
   * installs required dependencies to generate Doxygen source documentation
   * manual alternative:
 
