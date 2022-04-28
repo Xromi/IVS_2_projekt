@@ -15,7 +15,7 @@ def std_dev():
 
 	
 	for number in numbers:
-		sum=my_add(number, sum);
+		sum=my_add(number, sum)
 		psum=my_add(psum, my_power(number, 2))
 		N=my_add(N,1)
 
