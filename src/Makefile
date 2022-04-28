@@ -71,5 +71,6 @@ pack: clean doc build
 		test test_all test_exp_results test_exp_validity test_math_lib
 
 clean:
+	rm -rf CalculateIT* dist deb_dist debian
 	rm -rf doc warning_doxygen.txt $(zip_name) $(zip_name).zip *deb
 	find . -type d -name "__pycache__" -prune -exec rm -rf {} \;
