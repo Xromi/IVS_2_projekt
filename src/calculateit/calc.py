@@ -1,3 +1,9 @@
+## @file calc.py
+# @author Ondřej Chromý, David Klajbl
+# @brief Calculator GUI
+# @version 0.4
+# @date 2022-04-28
+
 from .exp_parser import exp_parse
 from .exp_parser import exp_eval
 import os
