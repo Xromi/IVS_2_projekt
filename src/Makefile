@@ -3,17 +3,21 @@ all:
 
 ##############
 
-doc:
-	doxygen Doxyfile
-
-##############
-
 install_run_dependencies:
 	sudo apt update
-	sudo apt install build-essential doxygen python3 python3-tk
+	sudo apt install python3 python3-tk
 
 run:
 	python3 -m calculateit.calc
+
+##############
+
+install_doc_dependencies:
+	sudo apt update
+	sudo apt install doxygen
+
+doc:
+	doxygen Doxyfile
 
 ##############
 
@@ -41,9 +45,6 @@ build:
 	cd deb_dist && mv *.deb ..
 	rm -rf CalculateIT* dist deb_dist debian
 
-build-clean:
-	rm -rf CalculateIT* dist deb_dist debian *.deb
-
 ##############
 
 profile:
@@ -66,9 +67,9 @@ pack: clean doc build
 
 .PHONY: clean doc profile run pack all \
 		install_run_dependencies install_build_dependencies \
-		build build-clean \
+		build build_clean \
 		test test_all test_exp_results test_exp_validity test_math_lib
 
-clean: build-clean
-	rm -rf doc warning_doxygen.txt $(zip_name) $(zip_name).zip
+clean:
+	rm -rf doc warning_doxygen.txt $(zip_name) $(zip_name).zip *deb
 	find . -type d -name "__pycache__" -prune -exec rm -rf {} \;
