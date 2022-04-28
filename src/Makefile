@@ -56,7 +56,7 @@ zip_name=xhorva17_xchrom19_xklajb00_xtarag01
 pack: clean doc build
 	rm -rf $(zip_name) $(zip_name).zip
 	mkdir $(zip_name) $(zip_name)/doc $(zip_name)/install $(zip_name)/repo
-	rsync -a ../ $(zip_name)/repo/ --exclude $(zip_name) --exclude *.deb --exclude doc
+	rsync -a ../ $(zip_name)/repo/ --exclude $(zip_name) --exclude *.deb --exclude doc --exclude warning_doxygen.txt
 	cp -r doc/html/* $(zip_name)/doc
 	cp *.deb $(zip_name)/install
 	zip -r $(zip_name).zip $(zip_name)
